@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router'
+import { Badge, Tag } from '../components/ui/Tag.jsx'
 import { getProject } from '../data/projects'
 import NotFound from './NotFound.jsx'
 
@@ -16,9 +17,7 @@ export default function CaseStudy() {
       </Link>
 
       <div className="mt-8">
-        <p className="inline-block rounded-full border border-amber/35 px-[11px] py-[6px] font-mono text-[11px] uppercase tracking-[0.14em] text-amber">
-          {project.badge}
-        </p>
+        <Badge>{project.badge}</Badge>
       </div>
 
       <h1 className="mt-5 text-h1 font-bold xl:text-h1-xl">{project.title}</h1>
@@ -37,9 +36,7 @@ export default function CaseStudy() {
           <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">Tech</dt>
           <dd className="mt-2 flex flex-wrap gap-2">
             {project.tech.map((t) => (
-              <span key={t} className="rounded-full bg-accent-tint px-[10px] py-[6px] font-mono text-[11px] text-[#7fdcec]">
-                {t}
-              </span>
+              <Tag key={t}>{t}</Tag>
             ))}
           </dd>
         </div>
