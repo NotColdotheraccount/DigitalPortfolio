@@ -14,7 +14,7 @@ export const site = {
   bio: "I'm Aqeef, an Electronic & Computer Engineering graduate from Nanyang Polytechnic, heading to NTU to study Electrical & Electronic Engineering. I love building things where hardware meets software — from IoT systems and microcontrollers to interactive web experiences. I'm a team player, an open-minded learner, and happiest when solving real problems with technology.",
 
   portrait: asset('images/portrait.jpg'),
-  email: 'itsaqeefdanish@gmail.com',
+  email: '2006.aqeefdanish@gmail.com',
 
   // Contact form: paste your free Web3Forms access key here to receive
   // messages by email. Leave it empty and the form opens the visitor's
