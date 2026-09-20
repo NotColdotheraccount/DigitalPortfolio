@@ -18,18 +18,19 @@ export const projects = [
     category: 'Software',
     title: 'MediBook',
     summary: 'Healthcare app that combines clinic booking, a medicine store and an AI chatbot.',
-    badge: 'Mobile App', // TODO: add grade / role if you have one
-    role: 'Mobile & API integration', // TODO: solo or team?
+    badge: 'Mobile App',
+    role: 'Duo · Mobile & API integration',
     year: '2025',
     tech: ['Flutter', 'Firebase', 'Firestore', 'Google Gemini', 'REST APIs'],
 
     images: {
-      card: img('medibook', 'card.jpg'),
-      hero: img('medibook', 'hero.jpg'),
+      card: img('medibook', 'medibook_cover.png'),
+      hero: img('medibook', 'medibook_cover.png'),
       gallery: [
-        { src: img('medibook', 'shot-1.jpg'), alt: 'MediBook clinic finder with map search' },
-        { src: img('medibook', 'shot-2.jpg'), alt: 'MediBook medicine store and checkout' },
-        { src: img('medibook', 'shot-3.jpg'), alt: 'MediBook healthcare chatbot' },
+        { src: img('medibook', 'medibook_clinic.jpeg'), alt: 'MediBook clinic finder with map search' },
+        { src: img('medibook', 'medibook_medicine.jpeg'), alt: 'MediBook medicine store and checkout' },
+        { src: img('medibook', 'medibook_gemini.jpeg'), alt: 'MediBook healthcare chatbot' },
+        { src: img('medibook', 'medibook_homepage.jpeg'), alt: 'MediBook homepage' },
       ],
     },
     video: null,
@@ -46,7 +47,7 @@ export const projects = [
       outOfScope: ['Real payment processing', 'Clinic-side booking system', 'Prescription verification'], // TODO: confirm
     },
     myRole:
-      'I built the app end to end in Flutter and wired it to Firebase — Firestore for live appointment, order and purchase data, and Firebase Storage for profile photos with cache-busting so a new picture shows up immediately. I also integrated the four external APIs and designed the onboarding and navigation.', // TODO: adjust if this was a team project
+      'My partner and I built the app end to end in Flutter and wired it to Firebase, Firestore for live appointment, order and purchase data, and Firebase Storage for profile photos with cache-busting so a new picture shows up immediately. I also integrated the four external APIs and designed the onboarding and navigation.', // TODO: adjust if this was a team project
     process: [
       { title: 'Plan', note: 'Mapped the services a patient needs and what one app could realistically combine.' },
       { title: 'Data model', note: 'Set up Firestore collections for appointments, orders and profiles.' },
