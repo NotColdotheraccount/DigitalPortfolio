@@ -14,13 +14,13 @@ export const site = {
   bio: "I'm Aqeef, an Electronic & Computer Engineering graduate from Nanyang Polytechnic, heading to NTU to study Electrical & Electronic Engineering. I love building things where hardware meets software — from IoT systems and microcontrollers to interactive web experiences. I'm a team player, an open-minded learner, and happiest when solving real problems with technology.",
 
   portrait: asset('images/portrait.jpg'),
-  email: '2006.aqeefdanish@gmail.com',
+  email: 'itsaqeefdanish@gmail.com',
 
   // Contact form: paste your free Web3Forms access key here to receive
   // messages by email. Leave it empty and the form opens the visitor's
   // mail app instead. Get a key at web3forms.com — it's not a secret,
   // it only allows sending mail to the address you registered.
-  contactAccessKey: '06c52ca6-4c5d-4ed5-9bba-99b802f0ef66',
+  contactAccessKey: '',
   resume: asset('resume.pdf'),
 
   socials: [
