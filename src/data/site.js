@@ -16,10 +16,6 @@ export const site = {
   portrait: asset('images/portrait.jpg'),
   email: '2006.aqeefdanish@gmail.com',
 
-  // Contact form: paste your free Web3Forms access key here to receive
-  // messages by email. Leave it empty and the form opens the visitor's
-  // mail app instead. Get a key at web3forms.com — it's not a secret,
-  // it only allows sending mail to the address you registered.
   contactAccessKey: '06c52ca6-4c5d-4ed5-9bba-99b802f0ef66',
   resume: asset('resume.pdf'),
 
