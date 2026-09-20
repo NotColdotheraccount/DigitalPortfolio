@@ -82,27 +82,41 @@ function Pulse({ rotation, speed = 0.45, delay = 0, from = 0.45, to = 1.65, anim
   )
 }
 
+// The amber LED, breathing between dim and bright.
+function Led({ animate = true }) {
+  const mesh = useRef(null)
+  const light = useRef(null)
+
+  useFrame(({ clock }) => {
+    if (!mesh.current || !animate) return
+
+    // 0.25 → 1 and back, about once every 2.2s
+    const level = 0.25 + 0.75 * (0.5 + 0.5 * Math.sin((clock.elapsedTime / 2.2) * Math.PI * 2))
+    mesh.current.material.opacity = level
+    if (light.current) light.current.intensity = 2.5 * level
+  })
+
+  return (
+    <>
+      <mesh ref={mesh} position={[0.95, 0.09, -1.0]}>
+        <sphereGeometry args={[0.07, 16, 16]} />
+        <meshBasicMaterial color={AMBER} transparent toneMapped={false} />
+      </mesh>
+      <pointLight ref={light} position={[0.95, 0.25, -1.0]} intensity={2.5} color={AMBER} distance={1.5} />
+    </>
+  )
+}
+
 export default function ChipScene({ animate = true }) {
-  const group = useRef(null)
   const dots = useDotTexture()
   const label = useLabelTexture()
 
-  // The chip holds its position; scrolling turns it. No cursor tilt.
-  // 900px of scrolling ≈ a quarter turn, lerped so it glides rather
-  // than snapping to every scroll event.
-  useFrame((_, delta) => {
-    if (!group.current || !animate) return
-
-    const target = 0.78 + (window.scrollY / 900) * (Math.PI / 2)
-    const ease = 1 - Math.pow(0.02, delta) // frame-rate independent lerp
-
-    group.current.rotation.y += (target - group.current.rotation.y) * ease
-  })
+  // The chip sits still. Only the pulses and the LED move.
 
   const quarter = Math.PI / 2
 
   return (
-    <group ref={group} rotation={[-0.42, 0.78, 0]} scale={0.95}>
+    <group rotation={[-0.42, 0.78, 0]} scale={0.95}>
       <ambientLight intensity={0.6} />
       <directionalLight position={[3, 5, 2]} intensity={1.1} />
       <pointLight position={[0, 1.2, 0]} intensity={6} color={CYAN} distance={4} />
@@ -145,11 +159,7 @@ export default function ChipScene({ animate = true }) {
       ))}
 
       {/* The one amber LED */}
-      <mesh position={[0.95, 0.09, -1.0]}>
-        <sphereGeometry args={[0.07, 16, 16]} />
-        <meshBasicMaterial color={AMBER} toneMapped={false} />
-      </mesh>
-      <pointLight position={[0.95, 0.25, -1.0]} intensity={2.5} color={AMBER} distance={1.5} />
+      <Led animate={animate} />
     </group>
   )
 }
