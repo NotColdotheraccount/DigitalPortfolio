@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import Figure from '../ui/Figure.jsx'
 
 // Photo grid: one large image plus the rest stacked beside it.
@@ -7,6 +7,13 @@ import Figure from '../ui/Figure.jsx'
 export default function Gallery({ images = [] }) {
   const [index, setIndex] = useState(null) // null = closed
   const isOpen = index !== null
+
+  // The side photos drift slightly slower than the page, which gives the
+  // grid a sense of depth as you scroll past it.
+  const grid = useRef(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: grid, offset: ['start end', 'end start'] })
+  const drift = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [26, -26])
 
   useEffect(() => {
     if (!isOpen) return
@@ -33,7 +40,7 @@ export default function Gallery({ images = [] }) {
 
   return (
     <>
-      <div className="grid gap-3 xl:grid-cols-[2fr_1fr] xl:gap-4">
+      <div ref={grid} className="grid gap-3 xl:grid-cols-[2fr_1fr] xl:gap-4">
         <button
           type="button"
           onClick={() => setIndex(0)}
@@ -42,7 +49,7 @@ export default function Gallery({ images = [] }) {
           <Figure src={first.src} alt={first.alt} ratio="16 / 10" label="Photo 01" />
         </button>
 
-        <div className="grid gap-3 xl:gap-4">
+        <motion.div style={{ y: drift }} className="grid gap-3 xl:gap-4">
           {rest.map((image, i) => (
             <button
               key={image.src}
@@ -53,7 +60,7 @@ export default function Gallery({ images = [] }) {
               <Figure src={image.src} alt={image.alt} ratio="4 / 3" label={`Photo 0${i + 2}`} />
             </button>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <AnimatePresence>

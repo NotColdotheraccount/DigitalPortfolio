@@ -1,6 +1,7 @@
 import { AnimatePresence } from 'motion/react'
 import { Route, Routes, useLocation } from 'react-router'
 import Background from './components/layout/Background.jsx'
+import CursorGlow from './components/layout/CursorGlow.jsx'
 import Footer from './components/layout/Footer.jsx'
 import Nav from './components/layout/Nav.jsx'
 import PageTransition from './components/layout/PageTransition.jsx'
@@ -24,6 +25,7 @@ export default function App() {
       </a>
 
       <Background />
+      <CursorGlow />
       <Nav />
 
       <main id="main">

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { site } from '../../data/site'
 import { NAV_LINKS, useSectionNav } from '../../hooks/useSectionNav'
+import Button from '../ui/Button.jsx'
 import MobileMenu from './MobileMenu.jsx'
 import Monogram from './Monogram.jsx'
 
@@ -35,14 +36,10 @@ export default function Nav() {
               </button>
             ))}
 
-            <a
-              href={site.resume}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-accent px-5 py-[11px] text-[14px] font-semibold text-on-accent transition-shadow hover:shadow-[0_0_26px_rgba(34,211,238,.5)]"
-            >
+            {/* Button brings the magnetic hover with it */}
+            <Button href={site.resume} className="!px-5 !py-[11px] !text-[14px]">
               Resume
-            </a>
+            </Button>
           </div>
 
           {/* Mobile: hamburger. aria-expanded tells screen readers the state. */}
