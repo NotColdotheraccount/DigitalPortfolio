@@ -11,17 +11,16 @@ export default function Chip() {
   const isDesktop = useMediaQuery('(min-width: 768px)')
   const reduce = useReducedMotion()
 
-  if (!isDesktop || reduce) {
-    return (
-      <ChipFallback caption={reduce ? 'Static chip · reduced motion' : 'Static chip · no 3D under 768px'} />
-    )
-  }
+  // Phones skip the 3D entirely — they'd download three.js for nothing.
+  if (!isDesktop) return <ChipFallback caption="Static chip · no 3D under 768px" />
 
   return (
     <div className="aspect-square w-full">
       {/* Until the 3D bundle arrives, show the CSS board so there's no gap */}
+      {/* Reduced motion still gets the 3D board — it simply holds still:
+          no pulses, no scroll rotation. */}
       <Suspense fallback={<ChipFallback caption="Loading chip…" />}>
-        <ChipCanvas />
+        <ChipCanvas animate={!reduce} />
       </Suspense>
     </div>
   )

@@ -59,11 +59,11 @@ function Trace({ rotation, length = 1.15, offset = 1.0 }) {
 }
 
 // A glowing dot that runs along one trace, then restarts.
-function Pulse({ rotation, speed = 0.45, delay = 0, from = 0.45, to = 1.65 }) {
+function Pulse({ rotation, speed = 0.45, delay = 0, from = 0.45, to = 1.65, animate = true }) {
   const ref = useRef(null)
 
   useFrame(({ clock }) => {
-    if (!ref.current) return
+    if (!ref.current || !animate) return
 
     // Loop 0 → 1 with a per-pulse head start
     const t = ((clock.elapsedTime * speed + delay) % 1 + 1) % 1
@@ -82,22 +82,21 @@ function Pulse({ rotation, speed = 0.45, delay = 0, from = 0.45, to = 1.65 }) {
   )
 }
 
-export default function ChipScene() {
+export default function ChipScene({ animate = true }) {
   const group = useRef(null)
   const dots = useDotTexture()
   const label = useLabelTexture()
 
-  // Tilt toward the cursor, lerped so it trails slightly. state.pointer is
-  // -1…1 across the canvas, so this stays within about ±12°.
-  useFrame((state, delta) => {
-    if (!group.current) return
+  // The chip holds its position; scrolling turns it. No cursor tilt.
+  // 900px of scrolling ≈ a quarter turn, lerped so it glides rather
+  // than snapping to every scroll event.
+  useFrame((_, delta) => {
+    if (!group.current || !animate) return
 
-    const targetX = -0.42 + state.pointer.y * -0.2
-    const targetY = 0.78 + state.pointer.x * 0.2
-    const ease = 1 - Math.pow(0.001, delta) // frame-rate independent lerp
+    const target = 0.78 + (window.scrollY / 900) * (Math.PI / 2)
+    const ease = 1 - Math.pow(0.02, delta) // frame-rate independent lerp
 
-    group.current.rotation.x += (targetX - group.current.rotation.x) * ease
-    group.current.rotation.y += (targetY - group.current.rotation.y) * ease
+    group.current.rotation.y += (target - group.current.rotation.y) * ease
   })
 
   const quarter = Math.PI / 2
@@ -118,7 +117,7 @@ export default function ChipScene() {
       {[0, quarter, quarter * 2, quarter * 3].map((angle, i) => (
         <group key={angle}>
           <Trace rotation={[0, angle, 0]} />
-          <Pulse rotation={[0, angle, 0]} speed={0.32 + i * 0.05} delay={i * 0.27} />
+          <Pulse rotation={[0, angle, 0]} speed={0.32 + i * 0.05} delay={i * 0.27} animate={animate} />
         </group>
       ))}
 
