@@ -116,7 +116,7 @@ export default function ChipScene({ animate = true }) {
   const quarter = Math.PI / 2
 
   return (
-    <group rotation={[-0.42, 0.78, 0]} scale={0.95}>
+    <group rotation={[0, 0.785, 0]} scale={0.95}>
       <ambientLight intensity={0.6} />
       <directionalLight position={[3, 5, 2]} intensity={1.1} />
       <pointLight position={[0, 1.2, 0]} intensity={6} color={CYAN} distance={4} />
@@ -124,7 +124,7 @@ export default function ChipScene({ animate = true }) {
       {/* Board */}
       <mesh receiveShadow>
         <boxGeometry args={[3, 0.12, 3]} />
-        <meshStandardMaterial map={dots} color="#8EA3B4" roughness={0.75} metalness={0.15} />
+        <meshStandardMaterial map={dots} color="#ffffff" roughness={0.8} metalness={0.1} />
       </mesh>
 
       {/* Traces + travelling pulses, one per side */}
@@ -142,7 +142,8 @@ export default function ChipScene({ animate = true }) {
       </mesh>
 
       {/* Marking on top of the chip */}
-      <mesh position={[0, 0.245, 0]} rotation={[-quarter, 0, 0]}>
+      {/* the -45° twist cancels the board's rotation so the text reads level */}
+      <mesh position={[0, 0.245, 0]} rotation={[-quarter, 0, -Math.PI / 4]}>
         <planeGeometry args={[0.78, 0.34]} />
         <meshBasicMaterial map={label} transparent toneMapped={false} />
       </mesh>

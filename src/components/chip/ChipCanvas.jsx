@@ -17,7 +17,9 @@ export default function ChipCanvas({ animate = true }) {
         // difference, but the GPU still pays for every extra pixel.
         dpr={[1, 2]}
         frameloop={inView && animate ? 'always' : 'demand'}
-        camera={{ position: [0, 3.3, 4.6], fov: 35 }}
+        camera={{ position: [0, 7, 1.3], fov: 32 }}
+        // Look down at the board so it reads as a diamond facing the viewer
+        onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
       >
