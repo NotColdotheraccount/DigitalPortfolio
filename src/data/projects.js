@@ -15,7 +15,7 @@ export const projects = [
     slug: 'smart-bus-stop',
     title: 'Smart Bus Stop',
     summary: 'Solar-powered IoT bus stop with real-time monitoring dashboard.',
-    badge: 'Team Leader',
+    badge: 'Team Leader · Grade A',
     role: 'Team Leader · Web server & dashboard',
     year: '2024', // TODO: confirm
     tech: ['BeagleBone', 'Flask', 'Socket.IO', 'IoT'],
@@ -49,7 +49,7 @@ export const projects = [
     results: {
       text: 'The system worked end-to-end and met every objective we set. Our lecturers praised the concept and the effort behind it. With more time, I would add features and optimise the code further.',
       stats: [
-        { value: 'A', label: 'Module grade' }, // TODO: confirm
+        { value: 'A', label: 'Module grade' },
         { value: '4', label: 'Team size' }, // TODO: confirm
         { value: '12', unit: 'wk', label: 'Duration' }, // TODO: confirm
       ],
