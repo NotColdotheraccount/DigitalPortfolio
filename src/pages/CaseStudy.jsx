@@ -10,6 +10,7 @@ import Figure from '../components/ui/Figure.jsx'
 import Reveal from '../components/ui/Reveal.jsx'
 import { Badge, Tag } from '../components/ui/Tag.jsx'
 import { getNextProject, getProject } from '../data/projects'
+import { usePageMeta } from '../hooks/usePageMeta'
 import NotFound from './NotFound.jsx'
 
 const SECTIONS = [
@@ -24,6 +25,8 @@ const SECTIONS = [
 function Heading({ number, children }) {
   return (
     <div className="mb-4 flex items-center gap-4">
+      {/* real heading for the document outline; the mono label is the visual one */}
+      <h2 className="sr-only">{children}</h2>
       <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
         {`// ${number} — ${children}`}
       </span>
@@ -45,6 +48,11 @@ export default function CaseStudy() {
   const { slug } = useParams()
   const project = getProject(slug)
   const reduce = useReducedMotion()
+
+  usePageMeta({
+    title: project ? `${project.title} — Aqeef Danish` : 'Project not found',
+    description: project?.summary,
+  })
 
   const heroRef = useRef(null)
   // Track this element's progress through the viewport, 0 → 1…
@@ -91,6 +99,7 @@ export default function CaseStudy() {
             src={project.images.hero}
             alt={project.images.gallery[0]?.alt ?? project.title}
             ratio="16 / 10"
+            priority
             label="Hero image"
             className="xl:[aspect-ratio:21/9]"
           />

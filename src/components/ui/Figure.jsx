@@ -3,7 +3,7 @@ import { useState } from 'react'
 // An image that degrades gracefully: if the file is missing (or hasn't been
 // added yet) it shows the striped placeholder from the design instead of a
 // broken-image icon.
-export default function Figure({ src, alt, ratio = '4 / 3', className = '', label }) {
+export default function Figure({ src, alt, ratio = '4 / 3', className = '', label, priority = false }) {
   const [failed, setFailed] = useState(!src)
 
   return (
@@ -24,7 +24,8 @@ export default function Figure({ src, alt, ratio = '4 / 3', className = '', labe
         <img
           src={src}
           alt={alt}
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
           decoding="async"
           onError={() => setFailed(true)}
           className="size-full object-cover"

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://notcoldotheraccount.github.io/DigitalPortfolio/sitemap.xml

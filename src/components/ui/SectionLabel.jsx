@@ -2,6 +2,9 @@
 export default function SectionLabel({ number, children, note }) {
   return (
     <div className="mb-10 flex items-center gap-4">
+      {/* Real heading for screen readers and document outline; the visible
+          version is the mono label beside it. */}
+      <h2 className="sr-only">{children}</h2>
       {/* solder pad */}
       <span
         aria-hidden="true"

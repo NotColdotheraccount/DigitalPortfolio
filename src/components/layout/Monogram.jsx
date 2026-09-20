@@ -8,7 +8,7 @@ export default function Monogram() {
       >
         AD
       </span>
-      <span className="font-mono text-[11px] tracking-[0.12em] text-[#64748B]">AQEEF.DEV</span>
+      <span className="font-mono text-[11px] tracking-[0.12em] text-ink-low">AQEEF.DEV</span>
     </span>
   )
 }

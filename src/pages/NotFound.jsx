@@ -1,6 +1,9 @@
 import { Link } from 'react-router'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function NotFound() {
+  usePageMeta({ title: 'Page not found — Aqeef Danish' })
+
   return (
     <section className="grid min-h-[70dvh] place-items-center px-[22px] text-center">
       <div>

@@ -42,7 +42,7 @@ export function ProcessTimeline({ steps = [] }) {
             className="absolute -left-[31px] top-1 size-[11px] rounded-full border-2 border-accent bg-bg"
           />
           <p className="font-mono text-[11px] text-accent">{String(i + 1).padStart(2, '0')}</p>
-          <h4 className="mt-1 font-display text-[18px] font-semibold">{step.title}</h4>
+          <h3 className="mt-1 font-display text-[18px] font-semibold">{step.title}</h3>
           <p className="mt-1 text-[15px]/[1.6] text-ink-low">{step.note}</p>
         </li>
       ))}

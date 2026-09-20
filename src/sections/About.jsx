@@ -19,6 +19,7 @@ export default function About() {
             src={site.portrait}
             alt="Aqeef Danish"
             ratio="3 / 4"
+            priority
             label="Portrait 3:4"
             className="rounded-[18px] border border-accent/20"
           />

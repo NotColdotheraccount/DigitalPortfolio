@@ -17,7 +17,7 @@ export default function Nav() {
           aria-label="Main"
           className="mx-auto flex max-w-[1200px] items-center justify-between rounded-full border border-accent/20 bg-[rgba(10,14,17,.6)] px-5 py-3 backdrop-blur-[20px] xl:px-[22px] xl:py-[14px]"
         >
-          <Link to="/" aria-label="Home">
+          <Link to="/" title="Home">
             <Monogram />
           </Link>
 

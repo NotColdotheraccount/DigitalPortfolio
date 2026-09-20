@@ -34,7 +34,7 @@
   --color-ink-mid: #dbe3ea; /* strong body, list items */
   --color-ink-body: #c3cdd8; /* body copy */
   --color-ink-low: #8b98a8; /* secondary text, placeholders */
-  --color-ink-faint: #5b6878; /* decorative annotations ONLY — fails AA */
+  --color-ink-faint: #76859a; /* quiet mono captions — 5.3:1 on the page bg */
 
   /* Fonts */
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
