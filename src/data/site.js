@@ -45,6 +45,10 @@ export const stack = [
 // type: 'award' shows brighter; 'participation' shows dimmer
 export const awards = [
   {
+    year: 2026,
+    items: [{ text: 'Edusave Skills Award', type: 'award' }],
+  },
+  {
     year: 2024,
     items: [
       { text: 'Edusave Certificate of Academic Achievement', type: 'award' },

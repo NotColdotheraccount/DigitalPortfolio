@@ -14,21 +14,21 @@ export default function Awards() {
         Awards
       </SectionLabel>
 
-      <div className="grid gap-8 md:grid-cols-3 xl:grid-cols-5 xl:gap-0">
+      <div className="grid gap-8 md:grid-cols-3 xl:grid-cols-6 xl:gap-0">
         {awards.map((group, i) => (
           <Reveal key={group.year} delay={i * 0.06}>
             <div
               className={[
                 'relative border-t border-accent-line pt-6',
-                'xl:h-full xl:border-r xl:border-r-hairline xl:pr-6',
-                i === 0 ? 'xl:pl-0' : 'xl:pl-6',
+                'xl:h-full xl:border-r xl:border-r-hairline xl:pr-5',
+                i === 0 ? 'xl:pl-0' : 'xl:pl-5',
                 i === awards.length - 1 ? 'xl:border-r-0 xl:pr-0' : '',
               ].join(' ')}
             >
               {/* solder pad sitting on the rule */}
               <span
                 aria-hidden="true"
-                className={`absolute -top-[5px] size-[9px] rounded-full border-2 border-accent bg-bg ${i === 0 ? 'left-0' : 'left-0 xl:left-6'}`}
+                className={`absolute -top-[5px] size-[9px] rounded-full border-2 border-accent bg-bg ${i === 0 ? 'left-0' : 'left-0 xl:left-5'}`}
               />
 
               <h3 className="font-display text-[28px] font-semibold">{group.year}</h3>
