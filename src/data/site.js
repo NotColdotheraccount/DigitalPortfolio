@@ -28,7 +28,7 @@ export const stack = [
   {
     id: 'U1',
     title: 'Languages',
-    items: ['Python', 'C', 'C++', 'C#', 'JavaScript', 'HTML', 'CSS'],
+    items: ['Python', 'C', 'C++', 'C#', 'Dart', 'JavaScript', 'HTML', 'CSS'],
   },
   {
     id: 'U2',
@@ -38,7 +38,7 @@ export const stack = [
   {
     id: 'U3',
     title: 'Web & Tools',
-    items: ['Flask', 'Socket.IO', 'React', 'Qubitro'],
+    items: ['Flutter', 'Firebase', 'Flask', 'Socket.IO', 'React', 'Qubitro'],
   },
 ]
 

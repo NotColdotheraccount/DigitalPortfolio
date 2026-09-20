@@ -1,5 +1,7 @@
 // ============================================================
 // PROJECTS — one object per project.
+// `category` decides which group a project appears under on Home.
+// A new category name creates a new group automatically.
 // Home shows a card for each; /#/projects/<slug> shows the case study.
 // To add a project: copy an object, change the slug, fill it in.
 //
@@ -12,7 +14,58 @@ const img = (slug, file) => asset(`images/projects/${slug}/${file}`)
 
 export const projects = [
   {
+    slug: 'medibook',
+    category: 'Software',
+    title: 'MediBook',
+    summary: 'Healthcare app that combines clinic booking, a medicine store and an AI chatbot.',
+    badge: 'Mobile App', // TODO: add grade / role if you have one
+    role: 'Mobile & API integration', // TODO: solo or team?
+    year: '2025',
+    tech: ['Flutter', 'Firebase', 'Firestore', 'Google Gemini', 'REST APIs'],
+
+    images: {
+      card: img('medibook', 'card.jpg'),
+      hero: img('medibook', 'hero.jpg'),
+      gallery: [
+        { src: img('medibook', 'shot-1.jpg'), alt: 'MediBook clinic finder with map search' },
+        { src: img('medibook', 'shot-2.jpg'), alt: 'MediBook medicine store and checkout' },
+        { src: img('medibook', 'shot-3.jpg'), alt: 'MediBook healthcare chatbot' },
+      ],
+    },
+    video: null,
+
+    overview:
+      'A mobile healthcare app that pulls several services into one place: booking clinic appointments, buying medicine, looking up nutrition information and asking a healthcare chatbot. Instead of juggling separate apps and websites, everything runs from one account.',
+    scope: {
+      text: 'Built with Flutter and Firebase, with real-time Firestore behind appointments, purchases and orders. Four external APIs do the heavy lifting: Geoapify for clinics and maps, RapidAPI for drug information and pricing, CalorieNinjas for nutrition lookups and Google Gemini for the chatbot.',
+      inScope: [
+        'Clinic finder with map search, region filtering and time-slot validation',
+        'Medicine store with API price checks and atomic batch checkout',
+        'Profiles with photo upload, nutrition lookup and an AI chatbot',
+      ],
+      outOfScope: ['Real payment processing', 'Clinic-side booking system', 'Prescription verification'], // TODO: confirm
+    },
+    myRole:
+      'I built the app end to end in Flutter and wired it to Firebase — Firestore for live appointment, order and purchase data, and Firebase Storage for profile photos with cache-busting so a new picture shows up immediately. I also integrated the four external APIs and designed the onboarding and navigation.', // TODO: adjust if this was a team project
+    process: [
+      { title: 'Plan', note: 'Mapped the services a patient needs and what one app could realistically combine.' },
+      { title: 'Data model', note: 'Set up Firestore collections for appointments, orders and profiles.' },
+      { title: 'Integrate', note: 'Wired in Geoapify, RapidAPI, CalorieNinjas and Gemini.' },
+      { title: 'Polish', note: 'Animated onboarding screens, responsive layouts and clear navigation.' },
+    ],
+    results: {
+      text: 'The app runs all five services from one account, with live data throughout. The hardest part was making checkout atomic — several documents have to update together, or none at all, so an order can never end up half-written.',
+      stats: [
+        { value: '5', label: 'Services' },
+        { value: '4', label: 'APIs integrated' },
+        { value: '3', unit: 'mo', label: 'Duration' },
+      ],
+    },
+  },
+
+  {
     slug: 'smart-bus-stop',
+    category: 'Hardware & IoT',
     title: 'Smart Bus Stop',
     summary: 'Solar-powered IoT bus stop with real-time monitoring dashboard.',
     badge: 'Team Leader · Grade A',
@@ -58,6 +111,7 @@ export const projects = [
 
   {
     slug: 'smart-queue-time-tracker',
+    category: 'Hardware & IoT',
     title: 'Smart Queue Time Tracker',
     summary: 'Tracks supermarket queue times to optimise staffing.',
     badge: 'Team Leader · Grade A',
@@ -103,6 +157,7 @@ export const projects = [
 
   {
     slug: 'automatic-light-switch',
+    category: 'Hardware & IoT',
     title: 'Automatic Light Switch',
     summary: 'Arduino system that switches lights on/off as people enter/leave a room.',
     badge: 'Distinction',
@@ -146,6 +201,18 @@ export const projects = [
     },
   },
 ]
+
+// Groups the array by category, keeping the order they first appear in.
+export const projectsByCategory = () => {
+  const groups = []
+  for (const project of projects) {
+    const name = project.category ?? 'Projects'
+    const existing = groups.find((g) => g.name === name)
+    if (existing) existing.items.push(project)
+    else groups.push({ name, items: [project] })
+  }
+  return groups
+}
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug)
 
