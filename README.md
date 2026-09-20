@@ -17,5 +17,5 @@ npm run dev      # http://localhost:5173
 - `public/resume.pdf` — resume
 
 ## Deploy
-Push to `main`. GitHub Actions builds and publishes automatically (`.github/workflows/deploy.yml`).
+Push to `master`. GitHub Actions builds and publishes automatically (`.github/workflows/deploy.yml`).
 One-time: repo **Settings → Pages → Source: GitHub Actions**.
