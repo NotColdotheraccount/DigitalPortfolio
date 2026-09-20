@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS
+   Everything in @theme becomes a Tailwind utility automatically:
+   --color-accent  → bg-accent, text-accent, border-accent …
+   --font-display  → font-display
+   --text-h2       → text-h2 (size + line-height + tracking together)
+   Change a value here and the whole site updates.
+   ============================================================ */
+@theme {
+  /* Surfaces */
+  --color-bg: #080b0d;
+  --color-raised: #0c1017;
+  --color-image: #0a0f13;
+  --color-hairline: rgb(255 255 255 / 0.09);
+
+  /* Signature cyan */
+  --color-accent: #22d3ee;
+  --color-accent-deep: #0e7490;
+  --color-accent-tint: rgb(34 211 238 / 0.09);
+  --color-accent-line: rgb(34 211 238 / 0.28);
+  --color-on-accent: #04191e; /* text on a cyan button */
+
+  /* Secondary — LED amber. Badges + one LED per board ONLY. */
+  --color-amber: #fbbf24;
+
+  /* Status */
+  --color-success: #4ade80;
+  --color-error: #f87171;
+
+  /* Text, brightest → faintest */
+  --color-ink-high: #f4f8fb; /* headings */
+  --color-ink-mid: #dbe3ea; /* strong body, list items */
+  --color-ink-body: #c3cdd8; /* body copy */
+  --color-ink-low: #8b98a8; /* secondary text, placeholders */
+  --color-ink-faint: #5b6878; /* decorative annotations ONLY — fails AA */
+
+  /* Fonts */
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, Menlo, monospace;
+
+  /* Type scale (mobile sizes; desktop sizes use md:/xl: variants) */
+  --text-display: 54px;
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: -0.05em;
+  --text-display-xl: 112px;
+  --text-display-xl--line-height: 0.88;
+  --text-display-xl--letter-spacing: -0.05em;
+
+  --text-h1: 44px;
+  --text-h1--line-height: 0.95;
+  --text-h1--letter-spacing: -0.045em;
+  --text-h1-xl: 82px;
+  --text-h1-xl--line-height: 0.92;
+  --text-h1-xl--letter-spacing: -0.045em;
+
+  --text-h2: 40px;
+  --text-h2--line-height: 1;
+  --text-h2--letter-spacing: -0.045em;
+  --text-h2-xl: 76px;
+  --text-h2-xl--line-height: 0.95;
+  --text-h2-xl--letter-spacing: -0.045em;
+
+  --text-h3: 24px;
+  --text-h3--line-height: 1.1;
+  --text-h3--letter-spacing: -0.03em;
+  --text-h3-xl: 26px;
+  --text-h3-xl--line-height: 1.1;
+  --text-h3-xl--letter-spacing: -0.03em;
+
+  --text-lead: 19px;
+  --text-lead--line-height: 1.45;
+  --text-lead--letter-spacing: -0.015em;
+  --text-lead-xl: 26px;
+  --text-lead-xl--line-height: 1.45;
+  --text-lead-xl--letter-spacing: -0.015em;
+
+  --text-label: 11px; /* never go below 11px */
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.2em;
+
+  /* Shadows */
+  --shadow-card-hover: 0 30px 70px rgb(0 0 0 / 0.6), 0 0 60px rgb(34 211 238 / 0.14);
+  --shadow-glow: 0 10px 34px rgb(34 211 238 / 0.25);
+  --shadow-glow-strong: 0 16px 44px rgb(34 211 238 / 0.45);
+
+  /* Animations (keyframes below) */
+  --animate-led: led 2.2s ease-in-out infinite;
+  --animate-breathe: breathe 8s ease-in-out infinite;
+  --animate-spin-slow: spin 60s linear infinite;
+}
+
+/* LED dot: fades between dim and bright */
+@keyframes led {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+/* Soft glow halo behind the chip */
+@keyframes breathe {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  html {
+    background: var(--color-bg);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--color-bg);
+    color: var(--color-ink-body);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-high);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(34 211 238 / 0.3);
+    color: var(--color-ink-high);
+  }
+
+  /* Visible keyboard focus on EVERY interactive element. Never remove. */
+  :focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+}
+
+/* Respect the OS "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
